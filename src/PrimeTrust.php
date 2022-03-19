@@ -8,7 +8,7 @@ class PrimeTrust
     protected $user;
     protected $pass;
 
-    function __construct()
+    public function __construct()
     {
         $this->url = config('primetrust.url');
         $this->user = config('primetrust.user');

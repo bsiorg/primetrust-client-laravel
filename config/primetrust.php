@@ -5,6 +5,6 @@ return [
 
     'auth' => [
         'user' => env('PRIMETRUST_USER'),
-        'pass' => env('PRIMETRUST_PASS')
+        'pass' => env('PRIMETRUST_PASS'),
     ],
 ];

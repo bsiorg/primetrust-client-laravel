@@ -16,9 +16,9 @@ class PrimeTrustServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../config/primetrust.php' => config_path('primetrust.php')
+            __DIR__.'/../config/primetrust.php' => config_path('primetrust.php')
         ]);
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/primetrust.php', 'primetrust');
+        $this->mergeConfigFrom(__DIR__.'/../config/primetrust.php', 'primetrust');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BsiOrg\PrimeTrust\Tests;
 
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 use BsiOrg\PrimeTrust\PrimeTrustServiceProvider;
 
 class TestCase extends BaseTestCase

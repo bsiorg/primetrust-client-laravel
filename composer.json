@@ -1,0 +1,26 @@
+{
+    "name": "bsiorg/primetrust-client-laravel",
+    "description": "A api client implementation in laravel of primetrust api.",
+    "tags": [
+        "primetrust",
+        "api-client",
+        "laravel"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "BsiOrg\\PrimeTrust\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mubashir Rasool Razvi",
+            "email": "rizimore@outlook.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.5",
+        "laravel/framework": ">=7.0"
+    }
+}

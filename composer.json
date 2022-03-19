@@ -31,10 +31,13 @@
     },
     "require": {
         "php": "^7.2.5|^8.0"
+
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5.8|^9.3.3",
-        "orchestra/testbench": "5.0"
+        "phpunit/phpunit": "^8.5.8|^9.3.3"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
@@ -45,9 +48,6 @@
                 "PrimeTrust": "BsiOrg\\PrimeTrust\\PrimeTrustFacade"
             }
         }
-    },
-    "config": {
-        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -2,8 +2,8 @@
 
 namespace BsiOrg\PrimeTrust\Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
 use BsiOrg\PrimeTrust\PrimeTrustServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {

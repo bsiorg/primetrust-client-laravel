@@ -19,6 +19,14 @@
             "role": "Director | Team Lead | Senior Developer"
         }
     ],
+    "require": {
+        "php": "^7.2.5|^8.0"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5.8|^9.3.3",
+        "orchestra/testbench": "5.0"
+    },
     "autoload": {
         "psr-4": {
             "BsiOrg\\PrimeTrust\\": "src/"
@@ -28,14 +36,6 @@
         "psr-4": {
             "BsiOrg\\PrimeTrust\\Tests\\": "tests"
         }
-    },
-    "require": {
-        "php": "^7.2.5|^8.0"
-
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^8.5.8|^9.3.3",
-        "orchestra/testbench": "5.0"
     },
     "config": {
         "sort-packages": true

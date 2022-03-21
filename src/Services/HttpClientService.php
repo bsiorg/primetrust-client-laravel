@@ -11,26 +11,6 @@ use Psr\Http\Message\ResponseInterface;
 
 trait HttpClientService
 {
-    public function get($uri)
-    {
-        return $this->request('GET', $uri);
-    }
-
-    public function post($uri, array $payload = [])
-    {
-        return $this->request('POST', $uri, $payload);
-    }
-
-    public function put($uri, array $payload = [])
-    {
-        return $this->request('PUT', $uri, $payload);
-    }
-
-    public function delete($uri, array $payload = [])
-    {
-        return $this->request('DELETE', $uri, $payload);
-    }
-
     protected function request($verb, $uri, array $payload = [])
     {
         if (isset($payload['json'])) {

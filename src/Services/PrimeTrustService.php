@@ -2,9 +2,16 @@
 
 namespace BsiOrg\PrimeTrust\Services;
 
+use BsiOrg\PrimeTrust\PrimeTrust;
+
 trait PrimeTrustService
 {
     public function all()
+    {
+        return 1;
+    }
+
+    public function get()
     {
         return 1;
     }
@@ -46,6 +53,24 @@ trait PrimeTrustService
 
     public function limit(int $size = 25, int $number = 1)
     {
+        return $this;
+    }
+
+    public function resource($resource): PrimeTrust
+    {
+        $this->resource = $resource;
+        return $this;
+    }
+
+    public function accounts(): PrimeTrust
+    {
+        $this->resource = 'accounts';
+        return $this;
+    }
+
+    public function contacts(): PrimeTrust
+    {
+        $this->resource = 'contacts';
         return $this;
     }
 }

@@ -14,8 +14,10 @@ class PrimeTrust
     protected $url;
     protected $user;
     protected $pass;
-    public $client;
-    public $timeout = 30;
+    protected $client;
+    protected $timeout = 30;
+
+    public $resource;
 
     public function __construct()
     {
@@ -64,8 +66,13 @@ class PrimeTrust
     protected function setClient(): void
     {
         $this->client = new Client([
-            'base_uri' => $this->url,
-            'timeout'  => $this->timeout,
+            'base_uri'    => $this->url,
+            'timeout'     => $this->timeout,
+            'http_errors' => false,
+            'headers'     => [
+                'Accept'       => 'application/json',
+                'Content-Type' => 'application/json',
+            ]
         ]);
     }
 }

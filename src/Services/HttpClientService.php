@@ -13,11 +13,7 @@ trait HttpClientService
 {
     protected function request($verb, $uri, array $payload = [])
     {
-        if (isset($payload['json'])) {
-            $payload = ['json' => $payload['json']];
-        } else {
-            $payload = empty($payload) ? [] : ['form_params' => $payload];
-        }
+        $payload = ['json' => $payload['json']];
 
         $response = $this->client->request($verb, $uri, $payload);
 

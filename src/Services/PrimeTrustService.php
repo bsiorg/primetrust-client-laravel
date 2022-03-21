@@ -6,9 +6,14 @@ use BsiOrg\PrimeTrust\PrimeTrust;
 
 trait PrimeTrustService
 {
-    public function all()
+    protected $resource;
+
+    public function all(): array
     {
-        return 1;
+        return $this->request(
+            'GET',
+            sprintf("%s/%s/%s", $this->url, $this->prefix, $this->resource)
+        );
     }
 
     public function get()

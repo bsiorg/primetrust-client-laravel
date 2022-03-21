@@ -11,13 +11,12 @@ class PrimeTrust
     use HttpClientService;
     use PrimeTrustService;
 
-    public $resource;
-
     protected $url;
     protected $user;
     protected $pass;
     protected $client;
     protected $timeout;
+    protected $prefix = 'proxy/v2';
 
     public function __construct()
     {
@@ -37,7 +36,7 @@ class PrimeTrust
             'headers'     => [
                 'Accept'        => 'application/json',
                 'Content-Type'  => 'application/json',
-                'Authorization' => "Basic {$this->getToken()}"
+                'Authorization' => "Bearer {$this->getToken()}"
             ],
         ]);
     }

@@ -9,6 +9,6 @@ return [
     ],
 
     'options' => [
-        'timeout' => 3
+        'timeout' => 30
     ]
 ];

@@ -2,7 +2,6 @@
 
 namespace BsiOrg\PrimeTrust;
 
-use BsiOrg\PrimeTrust\Api\Accounts;
 use GuzzleHttp\Client as HttpClient;
 
 class PrimeTrustClient
@@ -19,7 +18,7 @@ class PrimeTrustClient
         $this->user = config('primetrust.user');
         $this->pass = config('primetrust.pass');
 
-        if (! is_null($httpClient)) {
+        if ( ! is_null($httpClient)) {
             $this->$httpClient = $httpClient;
         }
     }

@@ -9,39 +9,48 @@ trait Accounts
         return 1;
     }
 
-    public function get() {
+    public function get()
+    {
         return 1;
     }
 
-    public function first() {
+    public function first()
+    {
         return 1;
     }
 
-    public function find(string $accountId) {
+    public function find(string $accountId)
+    {
         return $this;
     }
 
-    public function create(array $attributes) {
+    public function create(array $attributes)
+    {
         return $this;
     }
 
-    public function update(array $attributes) {
+    public function update(array $attributes)
+    {
         return $this;
     }
 
-    public function where(string $key, string $operator, string $value) {
+    public function where(string $key, string $operator, string $value)
+    {
         return $this;
     }
 
-    public function orderBy(array $sort) {
+    public function orderBy(array $sort)
+    {
         return $this;
     }
 
-    public function include(array $include) {
+    public function include(array $include)
+    {
         return $this;
     }
 
-    public function limit(int $size = 25, int $number = 1) {
+    public function limit(int $size = 25, int $number = 1)
+    {
         return $this;
     }
 }

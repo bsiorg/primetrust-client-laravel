@@ -3,7 +3,6 @@
 namespace BsiOrg\PrimeTrust\Services;
 
 use BsiOrg\PrimeTrust\Actions\PrimeTrustFilterAction;
-use BsiOrg\PrimeTrust\PrimeTrust;
 use BsiOrg\PrimeTrust\Resources\PrimeTrustResource;
 
 trait PrimeTrustService

@@ -17,6 +17,12 @@ trait PrimeTrustService
 
     public function all(): array
     {
+        if ($this->includes) {
+            $this->params = array_merge($this->params, [
+                'include' => implode(',', $this->includes)
+            ]);
+        }
+
         if ($this->pageSize) {
             $this->params = array_merge($this->params, [
                 'page[size]' => $this->pageSize
@@ -26,12 +32,6 @@ trait PrimeTrustService
         if ($this->pageNumber) {
             $this->params = array_merge($this->params, [
                 'page[number]' => $this->pageNumber
-            ]);
-        }
-
-        if ($this->includes) {
-            $this->params = array_merge($this->params, [
-                'include' => implode(',', $this->includes)
             ]);
         }
 

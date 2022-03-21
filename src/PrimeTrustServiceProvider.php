@@ -22,8 +22,10 @@ class PrimeTrustServiceProvider extends ServiceProvider
             .'/../config/primetrust.php' => config_path('primetrust.php'),
         ]);
 
-        $this->mergeConfigFrom(__DIR__.'/../config/primetrust.php',
-            'primetrust');
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/primetrust.php',
+            'primetrust'
+        );
     }
 
     public function provides(): array

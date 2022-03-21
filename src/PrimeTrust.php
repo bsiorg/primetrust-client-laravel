@@ -2,14 +2,14 @@
 
 namespace BsiOrg\PrimeTrust;
 
-use GuzzleHttp\Client;
 use BsiOrg\PrimeTrust\Services\HttpClientService;
 use BsiOrg\PrimeTrust\Services\PrimeTrustService;
+use GuzzleHttp\Client;
 
 class PrimeTrust
 {
-    use HttpClientService,
-        PrimeTrustService;
+    use HttpClientService;
+    use PrimeTrustService;
 
     protected $url;
     protected $user;
@@ -65,7 +65,7 @@ class PrimeTrust
     {
         $this->client = new Client([
             'base_uri' => $this->url,
-            'timeout'  => $this->timeout
+            'timeout'  => $this->timeout,
         ]);
     }
 }

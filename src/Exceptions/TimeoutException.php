@@ -14,6 +14,7 @@ class TimeoutException extends Exception
 
         $this->output = $output;
     }
+
     
     public function output()
     {

@@ -2,12 +2,12 @@
 
 namespace BsiOrg\PrimeTrust\Services;
 
-use Exception;
-use Psr\Http\Message\ResponseInterface;
 use BsiOrg\PrimeTrust\Exceptions\TimeoutException;
 use BsiOrg\PrimeTrust\Exceptions\NotFoundException;
 use BsiOrg\PrimeTrust\Exceptions\ValidationException;
 use BsiOrg\PrimeTrust\Exceptions\FailedActionException;
+use Exception;
+use Psr\Http\Message\ResponseInterface;
 
 trait HttpClientService
 {

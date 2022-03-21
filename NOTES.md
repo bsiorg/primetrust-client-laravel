@@ -1,0 +1,2 @@
+PrimeTrust::accounts()->all()
+

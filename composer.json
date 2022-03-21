@@ -20,8 +20,8 @@
         }
     ],
     "require": {
-        "php": "^7.2.5|^8.0"
-
+        "php": "^7.2.5|^8.0",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5.8|^9.3.3",
@@ -43,7 +43,7 @@
                 "BsiOrg\\PrimeTrust\\PrimeTrustServiceProvider"
             ],
             "aliases": {
-                "PrimeTrust": "BsiOrg\\PrimeTrust\\PrimeTrustFacade"
+                "PrimeTrust": "PrimeTrust"
             }
         }
     },

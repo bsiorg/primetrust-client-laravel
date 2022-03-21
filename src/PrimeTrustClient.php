@@ -18,9 +18,11 @@ class PrimeTrustClient
         $this->user = config('primetrust.user');
         $this->pass = config('primetrust.pass');
 
-        if ( ! is_null($httpClient)) {
+        // @formatter:off
+        if (!is_null($httpClient)) {
             $this->$httpClient = $httpClient;
         }
+        // @formatter:on
     }
 
     public function getUrl(): string

@@ -10,5 +10,5 @@ return [
 
     'options' => [
         'timeout' => 30,
-    ]
+    ],
 ];

@@ -7,4 +7,8 @@ return [
         'user' => env('PRIMETRUST_USER'),
         'pass' => env('PRIMETRUST_PASS'),
     ],
+
+    'options' => [
+        'timeout' => 3
+    ]
 ];

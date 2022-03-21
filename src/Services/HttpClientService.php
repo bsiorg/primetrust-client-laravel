@@ -13,9 +13,13 @@ trait HttpClientService
 {
     protected function request($verb, $uri, array $payload = [])
     {
-        $payload = ['json' => $payload['json']];
-
-        $response = $this->client->request($verb, $uri, $payload);
+        $response = $this->client->request(
+            $verb,
+            $uri,
+            [
+                'json' => $payload
+            ]
+        );
 
         $statusCode = $response->getStatusCode();
 

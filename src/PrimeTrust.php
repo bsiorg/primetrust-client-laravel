@@ -15,7 +15,7 @@ class PrimeTrust
     protected $user;
     protected $pass;
     protected $client;
-    protected $timeout = 30;
+    protected $timeout;
 
     public $resource;
 
@@ -24,7 +24,9 @@ class PrimeTrust
         $this->url = config('primetrust.url');
         $this->user = config('primetrust.user');
         $this->pass = config('primetrust.pass');
+        $this->timeout = config('primetrust.options.timeout');
         $this->setClient();
+        $this->auth();
     }
 
     public function getUrl(): string
@@ -52,21 +54,9 @@ class PrimeTrust
         $this->pass = $pass;
     }
 
-    public function getTimeout(): int
-    {
-        return $this->timeout;
-    }
-
-    public function setTimeout(int $timeout): void
-    {
-        $this->timeout = $timeout;
-        $this->setClient();
-    }
-
     protected function setClient(): void
     {
         $this->client = new Client([
-            'base_uri'    => $this->url,
             'timeout'     => $this->timeout,
             'http_errors' => false,
             'headers'     => [
@@ -74,5 +64,28 @@ class PrimeTrust
                 'Content-Type' => 'application/json',
             ],
         ]);
+    }
+
+    public function auth($endpoint = '/jwt')
+    {
+        $response = $this->request(
+            'POST',
+            sprintf("%s%s", $this->url, $endpoint),
+            [
+                'scopes'   => ['hei.primetrust'],
+                'user'     => $this->user,
+                'password' => $this->pass
+            ]
+        );
+
+        dd($response);
+    }
+
+    public function info($endpoint = '/info')
+    {
+        return $this->request(
+            'GET',
+            sprintf("%s%s", $this->url, $endpoint)
+        );
     }
 }

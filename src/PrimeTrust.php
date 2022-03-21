@@ -14,8 +14,8 @@ class PrimeTrust
     protected $url;
     protected $user;
     protected $pass;
-    protected $client;
-    protected $timeout = 30;
+    public $client;
+    public $timeout = 30;
 
     public function __construct()
     {
@@ -50,23 +50,6 @@ class PrimeTrust
         $this->pass = $pass;
     }
 
-    public function getClient(): Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(Client $client = null): void
-    {
-        if (is_null($client)) {
-            $this->client = new Client([
-                'base_uri' => $this->url,
-                'timeout'  => $this->timeout
-            ]);
-        }
-
-        $this->client = $client;
-    }
-
     public function getTimeout(): int
     {
         return $this->timeout;
@@ -75,5 +58,14 @@ class PrimeTrust
     public function setTimeout(int $timeout): void
     {
         $this->timeout = $timeout;
+        $this->setClient();
+    }
+
+    protected function setClient(): void
+    {
+        $this->client = new Client([
+            'base_uri' => $this->url,
+            'timeout'  => $this->timeout
+        ]);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace BsiOrg\PrimeTrust;
+namespace BsiOrg\PrimeTrust\Providers;
 
+use BsiOrg\PrimeTrust\PrimeTrust;
 use Illuminate\Support\ServiceProvider;
 
 class PrimeTrustServiceProvider extends ServiceProvider
@@ -19,11 +20,11 @@ class PrimeTrustServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__
-            .'/../config/primetrust.php' => config_path('primetrust.php'),
+            .'/../../config/primetrust.php' => config_path('primetrust.php'),
         ]);
 
         $this->mergeConfigFrom(
-            __DIR__.'/../config/primetrust.php',
+            __DIR__.'/../../config/primetrust.php',
             'primetrust'
         );
     }

@@ -21,7 +21,7 @@ Utilities autoloading in Laravel 5.5+. For older versions add the following line
 
 'aliases' => [
     ...
-    'PrimeTrust' => \BsiOrg\PrimeTrust\PrimeTrust::class,
+    'PrimeTrustFacade' => \BsiOrg\PrimeTrust\PrimeTrust::class,
     ...
 ]
 ```

@@ -41,10 +41,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BsiOrg\\PrimeTrust\\PrimeTrustServiceProvider"
+                "BsiOrg\\PrimeTrust\\Providers\\PrimeTrustServiceProvider"
             ],
             "aliases": {
-                "PrimeTrust": "BsiOrg\\PrimeTrust\\Facades\\PrimeTrust"
+                "PrimeTrust": "BsiOrg\\PrimeTrust\\Facades\\PrimeTrustFacade"
             }
         }
     },

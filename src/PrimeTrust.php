@@ -36,7 +36,7 @@ class PrimeTrust
             'headers'     => [
                 'Accept'        => 'application/json',
                 'Content-Type'  => 'application/json',
-                'Authorization' => "Bearer {$this->getToken()}"
+                'Authorization' => "Bearer {$this->getToken()}",
             ],
         ]);
     }
@@ -49,11 +49,11 @@ class PrimeTrust
 
         $response = $this->request(
             'POST',
-            sprintf("%s%s", $this->url, $endpoint),
+            sprintf('%s%s', $this->url, $endpoint),
             [
                 'scopes'   => ['hei.primetrust'],
                 'user'     => $this->user,
-                'password' => $this->pass
+                'password' => $this->pass,
             ]
         );
 
@@ -72,7 +72,7 @@ class PrimeTrust
     {
         return $this->request(
             'GET',
-            sprintf("%s%s", $this->url, $endpoint)
+            sprintf('%s%s', $this->url, $endpoint)
         );
     }
 }

@@ -20,32 +20,32 @@ trait PrimeTrustService
     {
         if ($this->withs) {
             $this->params = array_merge($this->params, [
-                'include' => implode(',', $this->withs)
+                'include' => implode(',', $this->withs),
             ]);
         }
 
         if ($this->pageSize) {
             $this->params = array_merge($this->params, [
-                'page[size]' => $this->pageSize
+                'page[size]' => $this->pageSize,
             ]);
         }
 
         if ($this->pageNumber) {
             $this->params = array_merge($this->params, [
-                'page[number]' => $this->pageNumber
+                'page[number]' => $this->pageNumber,
             ]);
         }
 
         if ($this->sorts) {
             $this->params = array_merge($this->params, [
-                'sort' => implode(',', $this->sorts)
+                'sort' => implode(',', $this->sorts),
             ]);
         }
 
         if ($this->filters) {
             foreach ($this->filters as $filter) {
                 $this->params = array_merge($this->params, [
-                    "filter[{$filter['key']} {$filter['operator']}]" => $filter['value']
+                    "filter[{$filter['key']} {$filter['operator']}]" => $filter['value'],
                 ]);
             }
         }
@@ -67,7 +67,7 @@ trait PrimeTrustService
         return $this->request(
             'GET',
             sprintf(
-                "%s/%s/%s/%s",
+                '%s/%s/%s/%s',
                 $this->url,
                 $this->prefix,
                 $this->resource,
@@ -155,7 +155,7 @@ trait PrimeTrustService
         $this->filters[] = [
             'key'      => $key,
             'operator' => $operator,
-            'value'    => $value
+            'value'    => $value,
         ];
 
         return $this;

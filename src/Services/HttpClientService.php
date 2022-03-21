@@ -16,9 +16,7 @@ trait HttpClientService
         $response = $this->client->request(
             $verb,
             $uri,
-            [
-                'json' => $payload
-            ]
+            ['json' => $payload]
         );
 
         $statusCode = $response->getStatusCode();

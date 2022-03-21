@@ -1,15 +1,10 @@
 <?php
 
-namespace BsiOrg\PrimeTrust\Api;
+namespace BsiOrg\PrimeTrust\Services;
 
-trait Accounts
+trait PrimeTrustService
 {
     public function all()
-    {
-        return 1;
-    }
-
-    public function get()
     {
         return 1;
     }

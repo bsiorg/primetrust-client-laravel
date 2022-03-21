@@ -21,6 +21,7 @@
     ],
     "require": {
         "php": "^7.2.5|^8.0",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^7.4"
     },
     "require-dev": {
@@ -43,7 +44,7 @@
                 "BsiOrg\\PrimeTrust\\PrimeTrustServiceProvider"
             ],
             "aliases": {
-                "PrimeTrust": "PrimeTrust"
+                "PrimeTrust": "BsiOrg\\PrimeTrust\\Facades\\PrimeTrust"
             }
         }
     },

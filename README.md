@@ -1,9 +1,11 @@
 # PrimeTrust Client for Laravel
+
 A api client implementation in laravel of [primetrust](https://primetrust.com) api.
 
 ## Install
 
-#### Install via Composer  
+#### Install via Composer
+
 ```
 composer require bsiorg/primetrust-client-laravel
 ```
@@ -19,11 +21,12 @@ Utilities autoloading in Laravel 5.5+. For older versions add the following line
 
 'aliases' => [
     ...
-    'PrimeTrustClient' => \BsiOrg\PrimeTrust\PrimeTrust::class,
+    'PrimeTrust' => \BsiOrg\PrimeTrust\PrimeTrust::class,
     ...
 ]
 ```
 
 ## Author
+
 Mubashir Rasool Razvi (@rizimore)  
 rizimore@outlook.com

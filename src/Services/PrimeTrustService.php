@@ -10,6 +10,8 @@ trait PrimeTrustService
 
     protected $resource;
     protected $resourceId;
+
+    protected $params = [];
     protected $includes;
     protected $pageSize;
     protected $pageNumber;
@@ -17,13 +19,26 @@ trait PrimeTrustService
 
     public function all(): array
     {
-        $params = [
-            'page[size]'   => $this->pageSize,
-            'page[number]' => $this->pageNumber
-        ];
+        if ($this->pageSize) {
+            $this->params = array_merge($this->params, [
+                'page[size]' => $this->pageSize
+            ]);
+        }
+
+        if ($this->pageNumber) {
+            $this->params = array_merge($this->params, [
+                'page[number]' => $this->pageNumber
+            ]);
+        }
+
+        if ($this->includes) {
+            $this->params = array_merge($this->params, [
+                'include' => implode(',', $this->includes)
+            ]);
+        }
 
         if ($this->sorts) {
-            $params = array_merge($params, [
+            $this->params = array_merge($this->params, [
                 'sort' => implode(',', $this->sorts)
             ]);
         }
@@ -35,7 +50,7 @@ trait PrimeTrustService
                 $this->url,
                 $this->prefix,
                 $this->resource,
-                http_build_query($params)
+                http_build_query($this->params)
             )
         );
     }

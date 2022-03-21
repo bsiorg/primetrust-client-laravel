@@ -2,6 +2,7 @@
 
 namespace BsiOrg\PrimeTrust;
 
+use BsiOrg\PrimeTrust\Resources\PrimeTrustResource;
 use BsiOrg\PrimeTrust\Services\HttpClientService;
 use BsiOrg\PrimeTrust\Services\PrimeTrustService;
 use GuzzleHttp\Client;
@@ -10,6 +11,7 @@ class PrimeTrust
 {
     use HttpClientService;
     use PrimeTrustService;
+    use PrimeTrustResource;
 
     protected $url;
     protected $user;

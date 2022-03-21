@@ -10,16 +10,17 @@ trait PrimeTrustService
     protected $resourceId;
 
     protected $params = [];
-    protected $includes;
+    protected $withs;
     protected $pageSize;
     protected $pageNumber;
     protected $sorts;
+    protected $filters = [];
 
     public function all(): array
     {
-        if ($this->includes) {
+        if ($this->withs) {
             $this->params = array_merge($this->params, [
-                'include' => implode(',', $this->includes)
+                'include' => implode(',', $this->withs)
             ]);
         }
 
@@ -39,6 +40,14 @@ trait PrimeTrustService
             $this->params = array_merge($this->params, [
                 'sort' => implode(',', $this->sorts)
             ]);
+        }
+
+        if ($this->filters) {
+            foreach ($this->filters as $filter) {
+                $this->params = array_merge($this->params, [
+                    "filter[{$filter['key']} {$filter['operator']}]" => $filter['value']
+                ]);
+            }
         }
 
         return $this->request(
@@ -84,9 +93,9 @@ trait PrimeTrustService
         return $this;
     }
 
-    public function include(string $include): PrimeTrust
+    public function with(string $resource): PrimeTrust
     {
-        $this->includes = $include;
+        $this->withs[] = $resource;
 
         return $this;
     }
@@ -99,29 +108,56 @@ trait PrimeTrustService
         return $this;
     }
 
-    public function orderBy(string $sort): PrimeTrust
+    public function orderBy(string $column, string $order): PrimeTrust
     {
-        $this->sorts[] = $sort;
+        if ($order == 'desc') {
+            $this->sorts[] = sprintf('-%s', $column);
+        } else {
+            $this->sorts[] = $column;
+        }
 
         return $this;
     }
 
-    public function orderByAsc(string $sort): PrimeTrust
+    public function orderByAsc(string $column): PrimeTrust
     {
-        $this->orderBy($sort);
+        $this->orderBy($column, 'asc');
 
         return $this;
     }
 
-    public function orderByDesc(string $sort): PrimeTrust
+    public function orderByDesc(string $column): PrimeTrust
     {
-        $this->orderBy(sprintf('-%s', $sort));
+        $this->orderBy($column, 'desc');
 
         return $this;
     }
 
-    public function where(string $key, string $operator, string $value)
+    public function latest(): PrimeTrust
     {
+        $this->orderByDesc('created_at');
+
+        return $this;
+    }
+
+    public function oldest(): PrimeTrust
+    {
+        $this->orderByDesc('created_at');
+
+        return $this;
+    }
+
+    public function where(
+        string $key,
+        string $operator,
+        string $value
+    ): PrimeTrust {
+        $this->filters[] = [
+            'key'      => $key,
+            'operator' => $operator,
+            'value'    => $value
+        ];
+
         return $this;
     }
 

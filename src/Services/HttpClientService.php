@@ -2,10 +2,10 @@
 
 namespace BsiOrg\PrimeTrust\Services;
 
-use BsiOrg\PrimeTrust\Exceptions\TimeoutException;
-use BsiOrg\PrimeTrust\Exceptions\NotFoundException;
-use BsiOrg\PrimeTrust\Exceptions\ValidationException;
 use BsiOrg\PrimeTrust\Exceptions\FailedActionException;
+use BsiOrg\PrimeTrust\Exceptions\NotFoundException;
+use BsiOrg\PrimeTrust\Exceptions\TimeoutException;
+use BsiOrg\PrimeTrust\Exceptions\ValidationException;
 use Exception;
 use Psr\Http\Message\ResponseInterface;
 
@@ -55,8 +55,12 @@ trait HttpClientService
     protected function handleRequestError(ResponseInterface $response)
     {
         if ($response->getStatusCode() == 422) {
-            throw new ValidationException(json_decode((string) $response->getBody(),
-                true));
+            throw new ValidationException(
+                json_decode(
+                    (string) $response->getBody(),
+                    true
+                )
+            );
         }
 
         if ($response->getStatusCode() == 404) {

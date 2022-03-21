@@ -11,47 +11,22 @@ class PrimeTrust
     use HttpClientService;
     use PrimeTrustService;
 
+    public $resource;
+
     protected $url;
     protected $user;
     protected $pass;
     protected $client;
     protected $timeout;
 
-    public $resource;
-
     public function __construct()
     {
         $this->url = config('primetrust.url');
-        $this->user = config('primetrust.user');
-        $this->pass = config('primetrust.pass');
+        $this->user = config('primetrust.auth.user');
+        $this->pass = config('primetrust.auth.pass');
         $this->timeout = config('primetrust.options.timeout');
-        $this->setClient();
         $this->auth();
-    }
-
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-
-    public function setUrl($url): void
-    {
-        $this->url = $url;
-    }
-
-    public function getUser(): string
-    {
-        return $this->user;
-    }
-
-    public function setUser($user): void
-    {
-        $this->user = $user;
-    }
-
-    public function setPass($pass): void
-    {
-        $this->pass = $pass;
+        $this->setClient();
     }
 
     protected function setClient(): void
@@ -60,14 +35,19 @@ class PrimeTrust
             'timeout'     => $this->timeout,
             'http_errors' => false,
             'headers'     => [
-                'Accept'       => 'application/json',
-                'Content-Type' => 'application/json',
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
+                'Authorization' => "Basic {$this->getToken()}"
             ],
         ]);
     }
 
-    public function auth($endpoint = '/jwt')
+    public function auth($endpoint = '/jwt'): string
     {
+        if (cache()->has('primetrust_token')) {
+            return $this->getToken();
+        }
+
         $response = $this->request(
             'POST',
             sprintf("%s%s", $this->url, $endpoint),
@@ -78,7 +58,15 @@ class PrimeTrust
             ]
         );
 
-        dd($response);
+        $token = $response['token'];
+        cache()->put('primetrust_token', $token, 3600); // 1 hour
+
+        return $token;
+    }
+
+    public function getToken()
+    {
+        return cache()->get('primetrust_token');
     }
 
     public function info($endpoint = '/info')

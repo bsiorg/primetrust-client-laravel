@@ -1,6 +1,7 @@
 # PrimeTrust Client for Laravel
 
-A api client implementation in laravel of [primetrust](https://primetrust.com) api.
+A client implementation of [primetrust](https://developers.primetrust.com) api in Laravel with very beautiful,
+expressive syntax. You don't need to worry about the behind the scene, just enjoy working with primetrust.
 
 ## Install
 
@@ -95,6 +96,16 @@ You can filter down your results with the help of all the available operators su
 - `nlike`: NOT like.
 - `sw`: Starts with. Look for strings that being with filter value. Case insensitive.
 
+```php
+// example to get all the users who are between 18 and 30
+PrimeTrust::contacts()
+    ->where('date-of-birth', 'gt', '2002-01-01')
+    ->where('date-of-birth', 'lt', '1990-01-01')
+    ->limit(10)
+    ->orderBy('created-at') // to get younger first
+    ->get();
+```
+
 #### ->orderBy($column, $order = asc|desc)
 
 You can sort the api request by any column which supported in primetrust api with the help of `orderBy`, `orderByAsc`
@@ -103,6 +114,14 @@ You can sort the api request by any column which supported in primetrust api wit
 #### ->limit($pageSize, $pageNumber)
 
 You can narrow down your result to your desire amount or can skip the results and directly go to your desire page.
+
+```php
+PrimeTrust::contributions()
+    ->where('account.id', 'eq', 'XXXX')
+    ->limit(5)
+    ->latest()
+    ->get();
+```
 
 ## Author
 

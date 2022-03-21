@@ -7,6 +7,7 @@ use BsiOrg\PrimeTrust\PrimeTrust;
 trait PrimeTrustService
 {
     protected $resource;
+    protected $resourceId;
 
     public function all(): array
     {
@@ -18,16 +19,22 @@ trait PrimeTrustService
 
     public function get()
     {
-        return 1;
+        return $this->request(
+            'GET',
+            sprintf(
+                "%s/%s/%s/%s",
+                $this->url,
+                $this->prefix,
+                $this->resource,
+                $this->resourceId
+            )
+        );
     }
 
-    public function first()
+    public function find(string $resourceId)
     {
-        return 1;
-    }
+        $this->resourceId = $resourceId;
 
-    public function find(string $accountId)
-    {
         return $this;
     }
 
@@ -47,6 +54,16 @@ trait PrimeTrustService
     }
 
     public function orderBy(array $sort)
+    {
+        return $this;
+    }
+
+    public function orderByAsc(array $sort)
+    {
+        return $this;
+    }
+
+    public function orderByDesc(array $sort)
     {
         return $this;
     }

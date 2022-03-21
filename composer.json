@@ -44,7 +44,7 @@
                 "BsiOrg\\PrimeTrust\\Providers\\PrimeTrustServiceProvider"
             ],
             "aliases": {
-                "PrimeTrust": "BsiOrg\\PrimeTrust\\Facades\\PrimeTrustFacade"
+                "PrimeTrust": "BsiOrg\\PrimeTrust\\Facades\\PrimeTrust"
             }
         }
     },

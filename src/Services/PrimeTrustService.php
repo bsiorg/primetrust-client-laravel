@@ -6,14 +6,37 @@ use BsiOrg\PrimeTrust\PrimeTrust;
 
 trait PrimeTrustService
 {
+    public $asc;
+
     protected $resource;
     protected $resourceId;
+    protected $includes;
+    protected $pageSize;
+    protected $pageNumber;
+    protected $sorts;
 
     public function all(): array
     {
+        $params = [
+            'page[size]'   => $this->pageSize,
+            'page[number]' => $this->pageNumber
+        ];
+
+        if ($this->sorts) {
+            $params = array_merge($params, [
+                'sort' => implode(',', $this->sorts)
+            ]);
+        }
+
         return $this->request(
             'GET',
-            sprintf("%s/%s/%s", $this->url, $this->prefix, $this->resource)
+            sprintf(
+                '%s/%s/%s?%s',
+                $this->url,
+                $this->prefix,
+                $this->resource,
+                http_build_query($params)
+            )
         );
     }
 
@@ -48,32 +71,43 @@ trait PrimeTrustService
         return $this;
     }
 
+    public function include(string $include): PrimeTrust
+    {
+        $this->includes = $include;
+
+        return $this;
+    }
+
+    public function limit(int $pageSize = 25, int $pageNumber = 1): PrimeTrust
+    {
+        $this->pageSize = $pageSize;
+        $this->pageNumber = $pageNumber;
+
+        return $this;
+    }
+
+    public function orderBy(string $sort): PrimeTrust
+    {
+        $this->sorts[] = $sort;
+
+        return $this;
+    }
+
+    public function orderByAsc(string $sort): PrimeTrust
+    {
+        $this->orderBy($sort);
+
+        return $this;
+    }
+
+    public function orderByDesc(string $sort): PrimeTrust
+    {
+        $this->orderBy(sprintf('-%s', $sort));
+
+        return $this;
+    }
+
     public function where(string $key, string $operator, string $value)
-    {
-        return $this;
-    }
-
-    public function orderBy(array $sort)
-    {
-        return $this;
-    }
-
-    public function orderByAsc(array $sort)
-    {
-        return $this;
-    }
-
-    public function orderByDesc(array $sort)
-    {
-        return $this;
-    }
-
-    public function include(array $include)
-    {
-        return $this;
-    }
-
-    public function limit(int $size = 25, int $number = 1)
     {
         return $this;
     }

@@ -59,18 +59,21 @@ trait PrimeTrustService
     public function resource($resource): PrimeTrust
     {
         $this->resource = $resource;
+
         return $this;
     }
 
     public function accounts(): PrimeTrust
     {
         $this->resource = 'accounts';
+
         return $this;
     }
 
     public function contacts(): PrimeTrust
     {
         $this->resource = 'contacts';
+
         return $this;
     }
 }

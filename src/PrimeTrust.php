@@ -2,41 +2,75 @@
 
 namespace BsiOrg\PrimeTrust;
 
+use BsiOrg\PrimeTrust\Services\PrimeTrustService;
+use GuzzleHttp\Client;
+
 class PrimeTrust
 {
+    use PrimeTrustService;
+
     protected $url;
     protected $user;
     protected $pass;
+    protected $client;
+    protected $timeout;
+    protected $prefix = 'proxy/v2';
 
     public function __construct()
     {
         $this->url = config('primetrust.url');
-        $this->user = config('primetrust.user');
-        $this->pass = config('primetrust.pass');
+        $this->user = config('primetrust.auth.user');
+        $this->pass = config('primetrust.auth.pass');
+        $this->timeout = config('primetrust.options.timeout');
+        $this->auth();
+        $this->setClient();
     }
 
-    public function getUrl()
+    protected function setClient(): void
     {
-        return $this->url;
+        $this->client = new Client([
+            'timeout'     => $this->timeout,
+            'http_errors' => false,
+            'headers'     => [
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
+                'Authorization' => "Bearer {$this->getToken()}",
+            ],
+        ]);
     }
 
-    public function setUrl($url)
+    public function auth($endpoint = '/jwt'): string
     {
-        $this->url = $url;
+        if (cache()->has('primetrust_token')) {
+            return $this->getToken();
+        }
+
+        $response = $this->request(
+            'POST',
+            sprintf('%s%s', $this->url, $endpoint),
+            [
+                'scopes'   => ['hei.primetrust'],
+                'user'     => $this->user,
+                'password' => $this->pass,
+            ]
+        );
+
+        $token = $response['token'];
+        cache()->put('primetrust_token', $token, 3600); // 1 hour
+
+        return $token;
     }
 
-    public function getUser()
+    public function getToken()
     {
-        return $this->user;
+        return cache()->get('primetrust_token');
     }
 
-    public function setUser($user)
+    public function info($endpoint = '/info')
     {
-        $this->user = $user;
-    }
-
-    public function setPass($pass)
-    {
-        $this->pass = $pass;
+        return $this->request(
+            'GET',
+            sprintf('%s%s', $this->url, $endpoint)
+        );
     }
 }

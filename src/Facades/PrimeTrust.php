@@ -1,10 +1,10 @@
 <?php
 
-namespace BsiOrg\PrimeTrust;
+namespace BsiOrg\PrimeTrust\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class PrimeTrustFacade extends Facade
+class PrimeTrust extends Facade
 {
     protected static function getFacadeAccessor()
     {

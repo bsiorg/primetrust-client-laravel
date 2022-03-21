@@ -6,8 +6,6 @@ use BsiOrg\PrimeTrust\PrimeTrust;
 
 trait PrimeTrustService
 {
-    public $asc;
-
     protected $resource;
     protected $resourceId;
 

@@ -55,7 +55,7 @@ trait PrimeTrustFilterAction
 
     public function oldest(): PrimeTrust
     {
-        $this->orderByDesc('created_at');
+        $this->orderByAsc('created_at');
 
         return $this;
     }
